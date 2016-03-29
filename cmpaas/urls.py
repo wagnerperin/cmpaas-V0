@@ -16,15 +16,21 @@ Including another URLconf
 from django.conf.urls import url, include
 from rest_framework import routers
 from django.contrib import admin
-from users import views
+from users.views import UserViewSet, GroupViewSet
+from maps.views import MapViewSet
+from mapper.views import MapperViewSet
+from mapper import views
+from rest_framework.authtoken.views import obtain_auth_token
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
+router.register(r'users', UserViewSet)
+router.register(r'groups', GroupViewSet)
+router.register(r'maps', MapViewSet)
+router.register(r'mapper', MapperViewSet)
 
 urlpatterns = [
     url(r'^docs/', include('rest_framework_swagger.urls')),
-	url(r'^api/userapi/', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+	url(r'^api/', include(router.urls)),
     url(r'^admin/', admin.site.urls),
+    url(r'^api/token-auth/$', obtain_auth_token),
 ]
