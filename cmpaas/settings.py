@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
     'mapper',
     'corsheaders',
+    'authentication',
 ]
 
 REST_FRAMEWORK = {

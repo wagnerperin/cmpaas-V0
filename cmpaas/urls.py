@@ -19,8 +19,8 @@ from django.contrib import admin
 from users.views import UserViewSet, GroupViewSet
 from maps.views import MapViewSet
 from mapper.views import MapperViewSet
-from mapper import views
 from rest_framework.authtoken.views import obtain_auth_token
+from authentication.views import CustomObtainAuthToken
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -32,5 +32,5 @@ urlpatterns = [
     url(r'^docs/', include('rest_framework_swagger.urls')),
 	url(r'^api/', include(router.urls)),
     url(r'^admin/', admin.site.urls),
-    url(r'^api/token-auth/$', obtain_auth_token),
+    url(r'^api/token-auth/$', CustomObtainAuthToken.as_view()),
 ]
