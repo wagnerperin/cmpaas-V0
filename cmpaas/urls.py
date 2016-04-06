@@ -19,14 +19,20 @@ from django.contrib import admin
 from users.views import UserViewSet, GroupViewSet
 from maps.views import MapViewSet
 from mapper.views import MapperViewSet
+from users.views import UserProfileViewSet, UserProfileMultiPartParserViewSet
 from rest_framework.authtoken.views import obtain_auth_token
 from authentication.views import CustomObtainAuthToken
+
+from django.conf.urls.static import static
+from django.conf import settings
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
 router.register(r'maps', MapViewSet)
 router.register(r'mapper', MapperViewSet)
+router.register(r'user_profiles', UserProfileViewSet)
+router.register(r'user_profiles_mpp', UserProfileMultiPartParserViewSet)
 
 urlpatterns = [
     url(r'^docs/', include('rest_framework_swagger.urls')),
@@ -34,3 +40,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/token-auth/$', CustomObtainAuthToken.as_view()),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

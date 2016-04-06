@@ -17,5 +17,5 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model   = UserProfile
-        fields  = ('url', 'birth_date', 'phone_number', 'gender', 'image', 'owner')
+        fields = ('url', 'date_of_birth', 'phone_number', 'gender', 'image')
         readonly_fields = ('url', 'image')
