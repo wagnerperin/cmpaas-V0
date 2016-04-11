@@ -17,7 +17,7 @@ from django.conf.urls import url, include
 from rest_framework import routers
 from django.contrib import admin
 from users.views import UserViewSet, GroupViewSet
-from maps.views import MapViewSet
+from maps.views import MapViewSet, MapContentViewSet
 from mapper.views import MapperViewSet
 from users.views import UserProfileViewSet, UserProfileMultiPartParserViewSet
 from rest_framework.authtoken.views import obtain_auth_token
@@ -30,6 +30,7 @@ router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
 router.register(r'maps', MapViewSet)
+router.register(r'mapcontents', MapContentViewSet)
 router.register(r'mapper', MapperViewSet)
 router.register(r'user_profiles', UserProfileViewSet)
 router.register(r'user_profiles_mpp', UserProfileMultiPartParserViewSet)

@@ -15,3 +15,11 @@ class Map(models.Model):
 
 	def __str__(self):
 		return self.title
+
+class MapContent(models.Model):
+    map             = models.ForeignKey(Map, on_delete = models.CASCADE)
+    content         = models.TextField()
+    created_date    = models.DateTimeField(default=timezone.now)
+    
+    def __str__(self):
+        return str(self.map)
