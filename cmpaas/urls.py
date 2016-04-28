@@ -17,7 +17,7 @@ from django.conf.urls import url, include
 from rest_framework import routers
 from django.contrib import admin
 from users.views import UserViewSet, GroupViewSet
-from maps.views import MapViewSet, MapContentViewSet, MapView
+from maps.views import MapViewSet, MapContentViewSet, MapView, MapVersionsView
 from mapper.views import MapperViewSet
 from users.views import UserProfileViewSet, UserProfileMultiPartParserViewSet
 from rest_framework.authtoken.views import obtain_auth_token
@@ -41,6 +41,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/token-auth/$', CustomObtainAuthToken.as_view()),
     url(r'^api/mymaps/(?P<username>.+)/$', MapView.as_view()),
+    url(r'^api/mapversions/(?P<mapId>.+)/$', MapVersionsView.as_view()),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

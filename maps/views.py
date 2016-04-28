@@ -22,3 +22,10 @@ class MapView(generics.ListAPIView):
     def get_queryset(self):
         username = self.kwargs['username']
         return Map.objects.filter(author__username=username)
+
+class MapVersionsView(generics.ListAPIView):
+    serializer_class = MapContentSerializer
+    
+    def get_queryset(self):
+        mapId = self.kwargs['mapId']
+        return MapContent.objects.filter(map=mapId)
